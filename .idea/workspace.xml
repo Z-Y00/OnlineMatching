@@ -12,18 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fe6c29b-e2af-4e3b-a204-a846bf30cf65" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/out.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/servers.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/servers.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/show.gnu" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/show.gnu" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/untitled" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/untitled" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -85,8 +73,21 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/utils.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4534">
-                  <caret line="2" selection-start-line="2" selection-end-line="2" />
+                <state relative-caret-position="3369">
+                  <caret line="244" column="48" lean-forward="true" selection-start-line="244" selection-start-column="48" selection-end-line="244" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#643#653#0" expanded="true" />
+                    <element signature="e#1014#1024#0" expanded="true" />
+                    <element signature="e#1699#1709#0" expanded="true" />
+                    <element signature="e#1918#1928#0" expanded="true" />
+                    <element signature="e#2102#2112#0" expanded="true" />
+                    <element signature="e#2271#2281#0" expanded="true" />
+                    <element signature="e#2445#2455#0" expanded="true" />
+                    <element signature="e#8396#8406#0" expanded="true" />
+                    <element signature="e#8557#8567#0" expanded="true" />
+                    <element signature="e#8914#8924#0" expanded="true" />
+                    <element signature="e#9393#9403#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -107,7 +108,7 @@
             <entry file="file://$PROJECT_DIR$/cmake-build-debug/show.sh">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="120">
-                  <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+                  <caret line="8" selection-start-line="8" selection-end-line="8" />
                 </state>
               </provider>
             </entry>
@@ -119,8 +120,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+                <state relative-caret-position="210">
+                  <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -166,8 +167,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="668" />
-    <option name="y" value="459" />
+    <option name="x" value="1319" />
+    <option name="y" value="283" />
     <option name="width" value="1505" />
     <option name="height" value="1042" />
   </component>
@@ -243,7 +244,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20519000" />
+    <option name="totallyTimeSpent" value="20547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -255,15 +256,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="36" width="2560" height="1404" extended-state="6" />
+    <frame x="862" y="311" width="1505" height="1042" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49829933" visible="true" weight="0.08512331" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49829933" visible="true" weight="0.14667581" />
       <window_info id="Structure" order="1" sideWeight="0.5017007" side_tool="true" weight="0.256315" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49960223" weight="0.3291536" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48766905" visible="true" weight="0.3291536" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.47703907" visible="true" weight="0.4595186" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3990878" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -271,7 +272,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49045345" weight="0.23354232" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.2705367" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.51233095" side_tool="true" visible="true" weight="0.3291536" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.52296096" side_tool="true" visible="true" weight="0.4595186" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4988067" weight="0.3299373" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.3295325" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -337,7 +338,7 @@
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/show.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -350,15 +351,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4534">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="3369">
+          <caret line="244" column="48" lean-forward="true" selection-start-line="244" selection-start-column="48" selection-end-line="244" selection-end-column="48" />
+          <folding>
+            <element signature="e#643#653#0" expanded="true" />
+            <element signature="e#1014#1024#0" expanded="true" />
+            <element signature="e#1699#1709#0" expanded="true" />
+            <element signature="e#1918#1928#0" expanded="true" />
+            <element signature="e#2102#2112#0" expanded="true" />
+            <element signature="e#2271#2281#0" expanded="true" />
+            <element signature="e#2445#2455#0" expanded="true" />
+            <element signature="e#8396#8406#0" expanded="true" />
+            <element signature="e#8557#8567#0" expanded="true" />
+            <element signature="e#8914#8924#0" expanded="true" />
+            <element signature="e#9393#9403#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        <state relative-caret-position="210">
+          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

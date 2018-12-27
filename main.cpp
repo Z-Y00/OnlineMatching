@@ -21,7 +21,7 @@ void display_add(const std::vector<std::pair<Point2d, Point2d>> & results){
         double height=result.second.y-result.first.y;
         double width=result.second.x-result.first.x;
         s="echo "+std::to_string(result.first.x)+" "+std::to_string(result.first.y)+" "
-          +std::to_string(height)+" "+std::to_string(width)+" "+" >>out.dat";
+          +std::to_string(width)+" "+std::to_string(height)+" "+" >>out.dat";
         system(s.c_str());
     }
 }
