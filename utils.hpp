@@ -258,7 +258,7 @@ std::vector<std::pair<Point2d, Point2d>> Model<maxn>::add_requests(std::vector<P
     std::cout << "Cost of orignial match      (total): " << rm_cost << std::endl;
     std::cout << "Cost of orignial match      (total): " << our_cost << std::endl;
     std::cout << "Total Improvement: " << ((rm_cost/our_cost)-1.0) * 100.0 << "%" << std::endl;
-    return m_ori;
+    return m_km;
     // Use KM to determine final match 
     // return km.match(server_cand, requests_batch);
 
