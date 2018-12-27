@@ -29,17 +29,17 @@ public:
    Edge2d get_edge(int s, int t);
 };
 
-template<int N>
+// Thanks to https://www.jianshu.com/p/36c3de94efd7
+template<int MAXN>
 class km{
-    constexpr static double inf = 100000000.0;
+    static constexpr int INF=0x3f3f3f3f;
+    double love[MAXN][MAXN],slack[MAXN];
+    int match[MAXN],ans[MAXN];
+    int visb[MAXN],visg[MAXN];
+    double eb[MAXN],eg[MAXN];
     int n;
-    double val[N][N];//n*n对点之间的距离
-    double lx[N],ly[N];//lx:server的偏好值 ly:client的偏好值
-    int linky[N];
-    int pre[N];
-    bool vis[N];//记录点是否被用到
-    double slack[N];
-    void bfs(int k);
+    double eps=1e-10;
+    bool DFS(int girl);
 public:
     std::vector<std::pair<Point2d, Point2d> > KM(std::vector<Point2d> s, std::vector<Point2d> r);
 };
@@ -50,9 +50,11 @@ class Model{
     std::vector<Point2d> requests, servers;
     int servers_match[maxn];
     double y[maxn<<1];
-    km<maxn+10> kkm;
+    km<(maxn<<1)+10> kkm;
     double t;
 public:
+    double rm_cost;
+    double our_cost;
     Model();
     double get_sum(std::vector<std::pair<Point2d, Point2d>>);
     std::vector<std::pair<Point2d, Point2d>> add_requests(std::vector<Point2d> requests_batch);
@@ -95,20 +97,21 @@ Edge2d Graph<maxn>::get_edge(int s, int t){
 }
 
 template<int maxn>
-Model<maxn>::Model(){
+Model<maxn>::Model(): rm_cost(0), our_cost(0){
     std::fill(servers_match, servers_match+maxn, -1);
     t = maxn*maxn + 1;
     memset(y, 0, sizeof(y));
 }
 template<int maxn>
 std::vector<std::pair<Point2d, Point2d>> Model<maxn>::add_requests(std::vector<Point2d> requests_batch){
-
+    static int rounds = 1;
+    std::cout << "-------------------Batch " << rounds++ << " --------------------"<< std::endl;
     // Save k servers until KM
     std::vector<int> server_cand;
 
     // Calculate per request
     for(auto new_r : requests_batch){
-        new_r.print();
+        // new_r.print();
         requests.push_back(new_r);
 
         // Build weight residual graph
@@ -191,11 +194,11 @@ std::vector<std::pair<Point2d, Point2d>> Model<maxn>::add_requests(std::vector<P
         }
 
         // Update M* using P_server_m
-        std::cout << "P* : " << std::endl;
+        // std::cout << "P* : " << std::endl;
         int now_nd = server_m;
         bool now_nd_is_server = true;
         while(now_nd != -1){
-            std::cout << now_nd << std::endl; 
+            // std::cout << now_nd << std::endl; 
             if(now_nd_is_server){
                 servers_match[now_nd] = fa[now_nd];
                 y[fa[now_nd]] -= (t-1.0) * Point2d::dis(requests[fa[now_nd]-servers.size()], servers[now_nd]);
@@ -207,7 +210,7 @@ std::vector<std::pair<Point2d, Point2d>> Model<maxn>::add_requests(std::vector<P
         }
 
         // Update y for EACH node
-        std::cout << "mind = " << min_d << std::endl;
+        // std::cout << "mind = " << min_d << std::endl;
         for(int i = 0; i < servers.size()+requests.size(); ++i){
             if(d[i] >= min_d){
                 // Do NOTHING
@@ -230,7 +233,7 @@ std::vector<std::pair<Point2d, Point2d>> Model<maxn>::add_requests(std::vector<P
         server_cand.push_back(server_m);
         // printf("serverm = %d\n", server_m);
     }
-    std::cout << "M*:" << std::endl;
+    std::cout << "Total M*:" << std::endl;
     for(int i = 0 ; i < servers.size(); ++i){
         if(servers_match[i] != -1){
             std::cout << "s(" << i << ") <-> r(" << servers_match[i] <<  ") " << std::endl;
@@ -245,8 +248,16 @@ std::vector<std::pair<Point2d, Point2d>> Model<maxn>::add_requests(std::vector<P
     }
     
     m_km = kkm.KM(servers_batch, requests_batch);
-    std::cout << "Sum of orignial match: " << get_sum(m_ori) << std::endl;
-    std::cout << "Sum of km match: " << get_sum(m_km) << std::endl;
+    double rm_this_cost = get_sum(m_ori), our_this_cost = get_sum(m_km);
+    rm_cost += rm_this_cost;
+    our_cost += our_this_cost;
+    std::cout << "DASHBOARD:" << std::endl;
+    std::cout << "K = " << requests_batch.size() << std::endl;
+    std::cout << "Cost of orignial match (this batch): " << rm_this_cost << std::endl;
+    std::cout << "Cost of km match       (this batch): " << our_this_cost << std::endl;
+    std::cout << "Cost of orignial match      (total): " << rm_cost << std::endl;
+    std::cout << "Cost of orignial match      (total): " << our_cost << std::endl;
+    std::cout << "Total Improvement: " << ((rm_cost/our_cost)-1.0) * 100.0 << "%" << std::endl;
     return m_ori;
     // Use KM to determine final match 
     // return km.match(server_cand, requests_batch);
@@ -272,54 +283,79 @@ double Model<maxn>::get_sum(std::vector<std::pair<Point2d, Point2d>> m){
     return sum;
 }
 
-template<int N>
-void km<N>::bfs(int k){
-    int px, py = 0,yy = 0;
-    double d;
-    memset(pre, 0, sizeof(pre));
-    memset(slack, inf, sizeof(slack));
-    linky[py]=k;
-    do{
-        px = linky[py],d = inf, vis[py] = 1;
-        for(int i = 1; i <= n; i++)
-            if(!vis[i]){
-                if(slack[i] > lx[px] + ly[i] - val[px][i])
-                    slack[i] = lx[px] + ly[i] -val[px][i], pre[i]=py;
-                if(slack[i]<d) d=slack[i],yy=i;
-            }
-        for(int i = 1; i <= n; i++)
-            if(vis[i]) lx[linky[i]] -= d, ly[i] += d;
-            else slack[i] -= d;
-        py = yy;
-    }while(linky[py]);
-    while(py) linky[py] = linky[pre[py]] , py=pre[py];
-}
-template<int N>
-std::vector<std::pair<Point2d, Point2d> > km<N>::KM(std::vector<Point2d> s, std::vector<Point2d> r)
+
+template<int MAXN>
+bool km<MAXN>::DFS(int girl)
 {
-    int nn=s.size();
-    n=nn;
-    memset(val,0,sizeof(val));
-    for(int i=0;i<nn;i++)
+    visg[girl]=true;
+    for(int boy=1;boy<=n;boy++)
     {
-        for(int j=0;j<n;j++)
+        if(visb[boy]) continue;
+        double gap=abs(eb[boy]+eg[girl]-love[girl][boy]);
+        if(gap<=eps)
         {
-            val[i+1][j+1]=-Point2d::dis(s[i],r[j]);
+            visb[boy]=1;
+            if(match[boy]==-1||DFS(match[boy]))
+            {
+                match[boy]=girl;
+                return true;
+            }
+        }
+        else slack[boy]=std::min(slack[boy],gap);
+    }
+    return false;
+}
+template<int MAXN>
+std::vector<std::pair<Point2d, Point2d> > km<MAXN>::KM(std::vector<Point2d> s, std::vector<Point2d> r)
+{
+    memset(match,-1,sizeof(match));
+    memset(eb,0,sizeof(eb));
+    memset(love,0,sizeof(love));
+    std::vector<std::pair<Point2d, Point2d> > result;
+    for(int i = 0; i < MAXN; ++i)
+        for(int j = 0; j < MAXN; ++j)
+            love[i][j] = 0;
+    n=s.size();
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            love[i][j]=-Point2d::dis(s[i-1],r[j-1]);
         }
     }
-    std::vector<std::pair<Point2d, Point2d> > result;
-    memset(lx, 0, sizeof(lx));
-    memset(ly, 0, sizeof(ly));
-    memset(linky, 0, sizeof(linky));
-    for(int i = 1; i <= nn; i++)
-        memset(vis, 0, sizeof(vis)), bfs(i);
-    double ans = 0.0;
-    for(int i = 1; i <= nn; ++i)
-        ans += lx[i] + ly[i];
-    for(int i=0;i<nn;i++)
+
+    for(int i=1;i<=n;i++)
     {
-        result.push_back(std::make_pair(s[linky[i]],r[i]));
+        eg[i]=love[i][1];
+        for(int j=2;j<=n;j++)
+        {
+            eg[i]=std::max(eg[i],love[i][j]);
+        }
     }
-    std::cout << "ans = " << ans << std::endl;
+    for(int i=1;i<=n;i++)
+    {
+        std::fill(slack+1,slack+1+n,10000000.0);
+        while(true)
+        {
+            memset(visg,0,sizeof(visg));
+            memset(visb,0,sizeof(visb));
+            if(DFS(i)) break;
+            double d=100000000.0;
+            for(int i=1;i<=n;i++)
+            {
+                if(!visb[i]) d=std::min(d,slack[i]);
+            }
+            for(int i=1;i<=n;i++)
+            {
+                if(visg[i]) eg[i]-=d;
+                if(visb[i]) eb[i]+=d;
+                else slack[i]-=d;
+            }
+        }
+    }
+    for(int i=1;i<=n;i++)
+    {
+        result.push_back(std::make_pair(s[match[i]-1],r[i-1]));
+    }
     return result;
 }
