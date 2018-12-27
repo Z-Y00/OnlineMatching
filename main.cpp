@@ -5,6 +5,7 @@
 using namespace std;
 #define  K 20
 #define  SERVER_NUM 100
+#define MAX_SIZE 100
 
 int picNum=0;
 
@@ -30,8 +31,8 @@ int main() {
     int x,y;
     std::vector<Point2d>  servers_batch;
     for (int i = 0; i < SERVER_NUM; ++i) {
-        x=rand() % 10;
-        y=rand() % 10;
+        x=rand() % MAX_SIZE;
+        y=rand() % MAX_SIZE;
         Point2d tmp(x,y);
         servers_batch.push_back(tmp);
     }
@@ -59,8 +60,8 @@ int main() {
     //request, get result
         vector<Point2d>  request;
         for (int i = 0; i < K; ++i) {
-            x=rand() % 10;
-            y=rand() % 10;
+            x=rand() % MAX_SIZE;
+            y=rand() % MAX_SIZE;
             Point2d tmp(x,y);
             request.push_back(tmp);
         }
