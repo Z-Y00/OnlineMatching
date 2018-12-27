@@ -4,7 +4,7 @@
 #include "utils.hpp"
 using namespace std;
 #define  K 20
-#define  SERVER_NUM 100
+#define  SERVER_NUM 400
 #define  MAX_SIZE 100
 int picNum=0;
 
