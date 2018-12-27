@@ -1,4 +1,4 @@
-set output "6.png"
+set output "21.png"
 set terminal png truecolor
 set autoscale
 #set xrange [0:20]
